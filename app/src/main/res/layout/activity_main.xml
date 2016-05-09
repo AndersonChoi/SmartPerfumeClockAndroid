@@ -27,12 +27,6 @@
             android:layout_alignParentBottom="true" />
     </ScrollView>
 
-    <Button
-        android:id="@+id/buttonSerialSend"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        android:text="Send Data" />
 
     <TextView
         android:visibility="gone"
@@ -69,5 +63,13 @@
         android:layout_alignLeft="@+id/serialSendText"
         android:layout_alignParentTop="true"
         android:text="Scan" />
+
+    <Button
+        android:id="@+id/buttonSerialSend"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/buttonScan"
+        android:text="Send Data" />
+
 
 </RelativeLayout>
