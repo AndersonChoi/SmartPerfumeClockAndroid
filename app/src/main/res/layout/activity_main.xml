@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
+    android:background="#000"
     android:focusable="true"
     android:focusableInTouchMode="true">
 
@@ -58,18 +59,44 @@
 
     <Button
         android:id="@+id/buttonScan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_alignLeft="@+id/serialSendText"
         android:layout_alignParentTop="true"
+        android:background="#0000ffff"
         android:text="Scan" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/blueicon"
+        />
+
+
 
     <Button
         android:id="@+id/buttonSerialSend"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/buttonScan"
-        android:text="Send Data" />
+        android:background="#00ffffff" />
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/phonecall"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        />
 
+
+    <ImageView
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/incoming"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        />
 
 </RelativeLayout>

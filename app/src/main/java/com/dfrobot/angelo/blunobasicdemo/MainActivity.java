@@ -49,6 +49,17 @@ public class MainActivity  extends BlunoLibrary {
 				// TODO Auto-generated method stub
 
 				serialSend(serialSendText.getText().toString());				//send the data to the BLUNO
+
+
+
+
+
+
+
+
+
+
+
 			}
 		});
 
