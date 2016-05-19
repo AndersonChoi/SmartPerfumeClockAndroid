@@ -1,14 +1,18 @@
 package com.dfrobot.angelo.blunobasicdemo;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -20,6 +24,7 @@ public class MainActivity  extends BlunoLibrary {
 	private Button buttonSerialSend;
 	private EditText serialSendText;
 	private TextView serialReceivedText;
+	private ImageView call;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,25 +43,78 @@ public class MainActivity  extends BlunoLibrary {
 
         serialBegin(115200);													//set the Uart Baudrate on BLE chip to 115200
 
+
+
+
+
         serialReceivedText=(TextView) findViewById(R.id.serialReveicedText);	//initial the EditText of the received data
         serialSendText=(EditText) findViewById(R.id.serialSendText);			//initial the EditText of the sending data
-
+		call = (ImageView) findViewById(R.id.iv_incoming);
         buttonSerialSend = (Button) findViewById(R.id.buttonSerialSend);		//initial the button for sending the data
         buttonSerialSend.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+
+
+				final MediaPlayer music;
+				music = MediaPlayer.create(MainActivity.this, R.raw.timeto);
+
+				music.start();
 				// TODO Auto-generated method stub
 
-				serialSend(serialSendText.getText().toString());				//send the data to the BLUNO
+				//serialSend(serialSendText.getText().toString());				//send the data to the BLUNO
+
+
+				final Handler handler3 = new Handler()
+				{
+					@Override
+					public void handleMessage(Message msg)
+					{
+
+						call.setVisibility(View.GONE);
+						if(music.isPlaying()) {
+							// 재생중이면 실행될 작업 (정지)
+							music.stop();
+						}
+
+					}
+				};
+
+
+				final Handler handler = new Handler()
+				{
+					@Override
+					public void handleMessage(Message msg)
+					{
+
+
+						call.setVisibility(View.VISIBLE);
+						serialSend("a");//most important
+
+						handler3.sendEmptyMessageDelayed(0, 9000);
+
+					}
+				};
 
 
 
 
+				final Handler handler2 = new Handler()
+				{
+					@Override
+					public void handleMessage(Message msg)
+					{
 
 
+						serialSend("a");//most important
+
+						handler.sendEmptyMessageDelayed(0, 500);
+					}
+				};
 
 
+				handler2.sendEmptyMessageDelayed(0, 500);    // ms, 3초후 종료시킴
 
 
 
